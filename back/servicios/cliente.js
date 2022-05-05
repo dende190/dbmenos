@@ -57,29 +57,41 @@ const clienteServicios = {
           nombre: cliente.nombre,
           telefono: cliente.telefono,
           ultimoPago: (
-            fechaUltimoPago.getFullYear() +
-            '-' +
-            (fechaUltimoPago.getMonth() + 1) +
-            '-' +
-            fechaUltimoPago.getDate() +
-            ' ' +
+            cliente.ultimoPago ?
             (
-              fechaUltimoPago.getHours() < 10 ?
-              ('0' + fechaUltimoPago.getHours()) :
-              fechaUltimoPago.getHours()
-            ) +
-            ':' +
-            (
-              fechaUltimoPago.getMinutes() < 10 ?
-              ('0' + fechaUltimoPago.getMinutes()) :
-              fechaUltimoPago.getMinutes()
-            ) +
-            ':' +
-            (
-              fechaUltimoPago.getSeconds() < 10 ?
-              ('0' + fechaUltimoPago.getSeconds()) :
-              fechaUltimoPago.getSeconds()
-            )
+              fechaUltimoPago.getFullYear() +
+              '-' +
+              (
+                fechaUltimoPago.getMonth() < 9 ?
+                ('0' + (fechaUltimoPago.getMonth() + 1)) :
+                (fechaUltimoPago.getMonth() + 1)
+              ) +
+              '-' +
+              (
+                fechaUltimoPago.getDate() < 10 ?
+                ('0' + fechaUltimoPago.getDate()) :
+                fechaUltimoPago.getDate()
+              ) +
+              ' ' +
+              (
+                fechaUltimoPago.getHours() < 10 ?
+                ('0' + fechaUltimoPago.getHours()) :
+                fechaUltimoPago.getHours()
+              ) +
+              ':' +
+              (
+                fechaUltimoPago.getMinutes() < 10 ?
+                ('0' + fechaUltimoPago.getMinutes()) :
+                fechaUltimoPago.getMinutes()
+              ) +
+              ':' +
+              (
+                fechaUltimoPago.getSeconds() < 10 ?
+                ('0' + fechaUltimoPago.getSeconds()) :
+                fechaUltimoPago.getSeconds()
+              )
+            ) :
+            'N/A'
           ),
           pagos: {},
         };
