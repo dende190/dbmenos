@@ -7,9 +7,8 @@ function pagoRutas(app) {
   app.use('/pago', router);
 
   router.post('/agregar', async (req, res, next) => {
-    const clienteId = req.body.clienteId;
-    const pagoId = await pagoServicio.agregar(clienteId, req.body.monto);
-    res.status(200).json(pagoDatos);
+    await pagoServicio.agregar(req.body.clienteId, req.body.monto);
+    res.status(200).json();
   });
 }
 

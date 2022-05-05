@@ -6,20 +6,12 @@ const pagoServicios = {
       return 0;
     }
 
-    const pagoId = await (
+    await (
       mysqlLib
-      .insert(
-        {
-          cliente: clienteId,
-          monto,
-        },
-        'pagos'
-      )
-      .then(pagoId => pagoId)
-      .catch(err => console.log(err))
-    );
-
-    return (pagoId || 0);
+      .query(`CALL crearPago(${clienteId}, ${monto}, NOW())`)
+    )
+    .then(pagoId => pagoId)
+    .catch(err => console.log(err))
   },
   obtenerFechaUltimoPago: async function(clienteId) {
     if (!clienteId) {
