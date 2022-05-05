@@ -5,8 +5,8 @@ function clienteRutas(app) {
   const router = express.Router();
   app.use('/cliente', router);
 
-  router.post('/obtener', async (req, res, next) => {
-    const clientes = await clienteServicio.obtenerTodos();
+  router.get('/obtenerTodosConPagos', async (req, res, next) => {
+    const clientes = await clienteServicio.obtenerTodosConPagos();
     res.status(200).json(clientes);
   });
 
@@ -16,6 +16,11 @@ function clienteRutas(app) {
       .agregar(req.body.nombre, req.body.telefono)
     );
     res.status(200).json(clienteDatos);
+  });
+
+  router.get('/obtenerTodos', async (req, res, next) => {
+    const clientes = await clienteServicio.obtenerTodos();
+    res.status(200).json(clientes);
   });
 }
 

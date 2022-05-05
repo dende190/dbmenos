@@ -4,8 +4,8 @@ USE dbmenos;
 CREATE TABLE clientes(
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(255) NOT NULL,
-  `telefono` INT(10) NOT NULL,
-  `ultimo_pago` DATETIME NOT NULL, /*Lo llamaria: fecha_ultimo_pago*/
+  `telefono` VARCHAR(11) NOT NULL,
+  `ultimo_pago` DATETIME NULL, /*Lo llamaria: fecha_ultimo_pago*/
   `fecha_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY(id)
 );

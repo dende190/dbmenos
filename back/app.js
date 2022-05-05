@@ -17,6 +17,7 @@ app.use(cors({
 
 //Routes
 clienteRutas(app);
+pagoRutas(app);
 
 app.listen(process.env.PORT, () => {
   console.log('Servidor escuchando en el puerto', process.env.PORT);

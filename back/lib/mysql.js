@@ -82,7 +82,7 @@ const mysqlLib = {
       wheres,
       others
     );
-    return this.query(query, params);
+    return this.query(query);
   },
   selectRow: function(
     columns,
@@ -96,7 +96,7 @@ const mysqlLib = {
       wheres,
       others
     );
-    return this.query(query, params, true);
+    return this.query(query, true);
   },
   insert: function(values, table) {
     return new Promise((resolve, reject) => {
