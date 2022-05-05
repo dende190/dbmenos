@@ -12,6 +12,7 @@
 
 ### 3. Instalar Vue:
 - Entrar a `./front` luego correr el comando `npm i` para instalar las dependencias.
+- Se debe iniciar el servidor con el comando `npm run serve`
 - El servidor se inicializara en `http://localhost:8080`
 
 ## Llamar a Juan Pablo Arnedo :D
