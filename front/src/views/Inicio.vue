@@ -1,8 +1,13 @@
 <template>
   <section class="inicio">
     <div v-if="clientes" class="clientes">
-      <h1>Clientes:</h1>
-      <table v-for="(cliente, clienteId) in clientes" :key="clienteId" class="clientes-tabla">
+      <h1>Listado de clientes:</h1>
+      <p>Aqui vas a poder ver el listado de clientes que tienes y los ultimos pagos que realizaron</p>
+      <table
+        v-for="(cliente, clienteId) in clientes"
+        :key="clienteId"
+        class="clientes-tabla"
+      >
         <thead>
           <tr>
             <th>ID: {{ clienteId }}</th>
@@ -58,6 +63,13 @@
   }
 
   .clientes-tabla {
+    width: 50%;
     margin-top: 20px;
+  }
+
+  .clientes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>

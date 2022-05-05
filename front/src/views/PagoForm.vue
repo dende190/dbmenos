@@ -4,19 +4,38 @@
     <h3 v-if="mensaje">
       {{ mensaje }}
     </h3>
-    <select name="clienteId" v-model="clienteId">
-      <option v-for="cliente in clientes" :value="cliente.id" :key="cliente.id">
-        {{ cliente.nombre }}
-      </option>
-    </select>
-    <input
-      v-model="monto"
-      type="number"
-      name="monto"
-      placeholder="Monto"
-      required="required"
-    />
-    <button>Crear</button>
+    <div class="formulario-campos">
+      <select
+        name="clienteId"
+        v-model="clienteId"
+        class="formulario-campos_seleccionador"
+      >
+        <option selected="selected" value="0">
+          Selecciona un cliente
+        </option>
+        <option
+          v-for="cliente in clientes"
+          :value="cliente.id"
+          :key="cliente.id"
+        >
+          {{ cliente.nombre }}
+        </option>
+      </select>
+      <label class="formulario-campos_etiqueta">
+        Monto:
+        <input
+          class="formulario-campos_input"
+          v-model="monto"
+          type="number"
+          name="monto"
+          placeholder="Monto"
+          required="required"
+        />
+      </label>
+    </div>
+    <button class="formulario-campos_boton">
+      Crear
+    </button>
   </form>
 </template>
 <script>
@@ -29,7 +48,7 @@
         mensaje: '',
         clientes: {},
         clienteId: 0,
-        monto: 0,
+        monto: '',
       };
     },
     created() {
@@ -41,6 +60,10 @@
         this.clientes = await clientesRespuesta.json();
       },
       async crear() {
+        if (!this.clienteId) {
+          return;
+        }
+
         this.mensaje = '';
         await fetch(
           apiPagoEnlace,
@@ -58,9 +81,52 @@
           }
         );
 
-        this.monto = 0;
+        this.monto = '';
         this.mensaje = 'Pago creado con exito :D';
       }
     }
   }
 </script>
+<style>
+  .formulario-campos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formulario-campos_seleccionador {
+    width: 250px;
+    margin-bottom: 8px;
+    background: #f5f5f5;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 25px;
+    padding: 2px 8px;
+    margin-left: 4px;
+    font-size: 14px;
+  }
+
+  .formulario-campos_etiqueta {
+    margin-bottom: 8px;
+  }
+
+  .formulario-campos_input {
+    background: #f5f5f5;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 25px;
+    padding: 2px 8px;
+    margin-left: 4px;
+    font-size: 14px;
+  }
+
+  .formulario-campos_boton {
+    margin-top: 5px;
+    width: 255px;
+    height: 32px;
+    border-radius: 20px;
+    border: 1px solid black;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
